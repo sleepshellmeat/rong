@@ -1,0 +1,50 @@
+# Git安装好之后就要开始配置了
+# git config --global user.name "这里是你要起的用户名字"   # 配置用户名
+# git config --global user.email "xxx.gmail.com"			 # 配置邮箱
+
+# cd 后面拉进来你刚创建的文件夹，这里复制好像不好使 
+# 然后执行git init 把这个目录变成Git可以管理的仓库。
+# 里面有一个隐藏文件 .git/  ，不要修改。
+# 在文件夹里面创建一个 xxx.txt 文件 随便写入一些，此时txt文件和 .git/同级，相当于放在仓库门口了。
+# 执行 git add xxx.txt 就把它添加到仓库里面了
+# 执行 git commit -m "第一次提交" 把文件提交到仓库
+""" 上面 git init 是用来创建仓库的，git add 是用来添加到仓库的，git commit -m 是用来提交到仓库的"""
+
+# 一些命令
+## git status 可以查看仓库的状态 （常用）
+# git diff   如果有修改，可以看到修改的内容  (不常用)
+# git log    可以查看提交日志   git log --pretty=oneline  去除一些没用的
+
+# 版本回退 
+## git reset --hard HEAD^ 回退到上个版本 （HEAD^^, 这个是回退到上上个版本）
+# git reset --hard HEAD~100  回退到100个版本
+## git reset --hard ccdd7d 然后也可以根据版本号来回退，通过git log 来看版本号
+# git reflog 该命令记录每条命令
+# git checkout -- fileName  撤消  filrname是创建的 xxx.txt
+
+# 远程仓库
+# 创建SSH Key   输入ssh-keygen -t rsa -C "注册的Github邮箱"
+# 这里有一个目录(/c/Users/11954/.ssh/id_rsa)，需要记录一下，后面一直回车
+# cd /c/Users/11954/.ssh
+# ls 一下 会有两个文件 id_rsa(私钥)   id_rsa.pud（公钥）
+# cat id_rsa.pud 打开这个公钥，把里面的一大串复制放入Github上设置，创建一个ssh连接
+# ssh -T git@github.com   创建好后，验证这个ssh。
+# 在github上面创建一个远程仓库，在Clone or download 下面复制SSH连接。
+# git remote add origin 远程仓库地址    如果想删除关联   git remote rm origin
+## 推送本地库内容到远程库   git push origin master  
+## 推之前把远程库内容先拉下来， 否则会报错。  git pull origin master
+# 正常情况下，在先创建好远程库，直接拉（克隆）下来就是本地库。不需要自己创建本地库
+# git clone  从git上面复制的地址   eg:  git@github.com:sleepshellmeat/rong.git
+
+# .gitignore  这个是上传时忽略特殊文件的。 要在本地仓库创建  touch .gitignore (手动也行)
+# 同在本地仓库目录下有很多文件，把不想上传的文件名写到这个里面就ok了
+
+# git branch wyz  创建 wyz 分支
+# git checkout wyz  切换到wyz分支   git checkout -b wyz   这个直接创建加切换
+# 切换到其它分支　修改文件，git add - git commit - 后只在自己的分支能看到改变.
+# 如若将分支上面的代码合并到master上面，需要切换到master执行git merge wyz  这里wyz是一个分支
+# 创建远程分支第一次会有提示 --set.... 复制就好
+# 当把本地删除，从git上面克隆，只会克隆master。自己工作需要再创建一个wyz分支，从github上面wyz分拉就好。
+# git checkout -b dev origin/dev   在远程仓库也创建一个dev分支
+# 工作中是没有权限往master上面合并，一般都是dev
+
