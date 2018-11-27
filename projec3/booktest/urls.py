@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^How was rong$', views.rong),
     url(r'^grades/$', views.grades),
     url(r'^students/$', views.students),
+    url(r'^grades/(\d+)/$', views.grastu)
 ]

@@ -9,10 +9,7 @@
     <ul>
         {% for grade in grades %}
         <li>
-            <a href="#">{{ grade.gname }}</a>
-            <a href="#">{{ grade.gdata }}</a>
-            <a href="#">{{ grade.ggirlnum }}</a>
-            <a href="#">{{ grade.gboynum }}</a>
+            <a href="{{ grade.id }}">{{ grade.gname }}</a>
         </li>
         {% endfor %}
 

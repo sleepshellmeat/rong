@@ -23,3 +23,8 @@ def grades(request):
 def students(request):
     studentsList = Students.objects.all()
     return render(request, 'students.html', {"students": studentsList})
+
+def grastu(request, num):
+    grade = Grades.objects.get(pk=num)
+    grastuList = grade.students_set.all()
+    return render(request, 'students.html', {"students": grastuList})
