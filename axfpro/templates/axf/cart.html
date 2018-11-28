@@ -1,0 +1,16 @@
+{% extends 'axf/base.html' %}
+
+{% load static from staticfiles %}
+
+{% block linkscript %}
+    <linkrel="stylesheet" type="text/css" href="{% static 'cart/css/cart.css'%}" />
+    <script type="text/javascript" charset="utf-8" src="{% static 'cart/js/cart.js' %}"></script>
+{% endblock linkscript %}
+
+
+{% block base %}
+    <h1>rong is a good man</h1>
+    <h1>rong is a nice man</h1>
+    <h1>rong is a handsome man</h1>
+    <h1>cart</h1>
+{% endblock base %}
