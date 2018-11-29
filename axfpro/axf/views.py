@@ -32,13 +32,36 @@ def home(request):
     return render(request, "axf/home.html", data)
 
 
-def market(request, categoryid):
+def market(request, categoryid, cid, sortid):
     leftSlider = FoodTypes.objects.all()
-    productList = Goods.objects.filter(categoryid=categoryid)
+    if cid == "0":
+        productList = Goods.objects.filter(categoryid=categoryid)
+    else:
+        productList = Goods.objects.filter(categoryid=categoryid, childcid=cid)
+
+    # sort
+    if sortid == '1':
+        productList = productList.order_by("productnum")
+    elif sortid == '2':
+        productList = productList.order_by("price")
+    elif sortid == '3':
+        productList = productList.order_by("-price")
+
+    group = leftSlider.get(typeid=categoryid)
+    childList = []
+    childnames = group.childtypenames
+    arr1 = childnames.split("#")
+    for str in arr1:
+        arr2 = str.split(":")
+        obj = {"childName": arr2[0], "childId": arr2[1]}
+        childList.append(obj)
     data = {
         "title": '闪送超市',
         "leftSlider": leftSlider,
         "productList": productList,
+        "childList": childList,
+        "categoryid": categoryid,
+        "cid": cid,
     }
     return render(request, "axf/market.html", data)
 
