@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from . models import Wheel, Nav, mustbuy, Shop, MainShow
+from . models import Wheel, Nav, mustbuy, Shop, MainShow, FoodTypes, Goods
 # Create your views here.
-from django.http import HttpResponse
+
 
 
 
@@ -32,9 +32,13 @@ def home(request):
     return render(request, "axf/home.html", data)
 
 
-def market(request):
+def market(request, categoryid):
+    leftSlider = FoodTypes.objects.all()
+    productList = Goods.objects.filter(categoryid=categoryid)
     data = {
         "title": '闪送超市',
+        "leftSlider": leftSlider,
+        "productList": productList,
     }
     return render(request, "axf/market.html", data)
 
