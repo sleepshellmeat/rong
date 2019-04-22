@@ -15,6 +15,12 @@
 # git diff   如果有修改，可以看到修改的内容  (不常用)
 # git log    可以查看提交日志   git log --pretty=oneline  去除一些没用的
 
+# 删除远端的一些文件
+# git pull origin master 将项目从远程库拉下来
+# git rm -r --cached dudu.py lala.txt 将dudu.py和lala.txt删除，多个文件空格隔开
+# git commit -m "del"
+# git push -u origin master 
+
 # 版本回退 
 ## git reset --hard HEAD^ 回退到上个版本 （HEAD^^, 这个是回退到上上个版本）
 # git reset --hard HEAD~100  回退到100个版本
